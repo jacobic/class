@@ -133,7 +133,7 @@ cdef class Class:
         self.set(pars)
 
     def __reduce__(self):
-        return (self.__class__, ((), self._pars))
+        return (self.__class__, (), self._pars)
 
     # Set up the dictionary
     def set(self,*pars,**kars):
