@@ -63,7 +63,6 @@ class CosmoComputationError(CosmoError):
     pass
 
 
-@cython.auto_pickle(True)
 cdef class Class:
     """
     Class wrapping, creates the glue between C and python
@@ -126,6 +125,12 @@ cdef class Class:
         sprintf(self.fc.filename,"%s",dumc)
         self.ncp = set()
         if default: self.set_default()
+
+    def __getstate__(self):
+        return self._pars
+
+    def __setstate__(self, pars):
+        self.set(pars)
 
     # Set up the dictionary
     def set(self,*pars,**kars):
