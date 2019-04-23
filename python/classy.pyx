@@ -132,6 +132,9 @@ cdef class Class:
     def __setstate__(self, pars):
         self.set(pars)
 
+    def __reduce__(self):
+        return (self.__class__, ((), self._pars))
+
     # Set up the dictionary
     def set(self,*pars,**kars):
         if len(pars)==1:
