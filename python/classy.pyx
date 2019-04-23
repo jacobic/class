@@ -108,6 +108,32 @@ cdef class Class:
         def __get__(self):
             return self.nl.method
 
+    def __getstate__(self):
+        return (
+        self.pr, self.ba, self.th, self.pt, self.pm, self.nl, self.tr, self.sp,
+        self.op, self.le, self.fc, self.ready, self.allocated, self._pars,
+        self.ncp,)
+
+    def __setstate__(self, state):
+        pr, ba, th, pt, pm, nl, tr, sp, op, le, fc, ready, allocated, _pars, ncp = state
+
+        self.pr = pr
+        self.ba = ba
+        self.th = th
+        self.pt = pt
+        self.pm = pm
+        self.nl = nl
+        self.tr = tr
+        self.sp = sp
+        self.op = op
+        self.le = le
+        self.fc = fc
+        self.ready = ready
+        self.allocated = allocated
+        self._pars = _pars
+        self.ncp = ncp
+
+
     def set_default(self):
         _pars = {
             "output":"tCl mPk",}
